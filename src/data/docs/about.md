@@ -6,6 +6,7 @@ sidebar:
   label: About KOAtlas
   order: 0
 ---
+# About KOAtlas
 
 Community-maintained reference for KOReader plugin development — APIs, architecture, patterns, and practical examples drawn from the codebase and existing plugins.
 

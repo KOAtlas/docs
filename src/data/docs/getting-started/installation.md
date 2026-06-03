@@ -7,6 +7,8 @@ sidebar:
   order: 1
 ---
 
+# Installation 
+
 When developing KOReader plugins, you generally do not need to build KOReader from source. The full build process exists for people modifying KOReader's core - for plugin development, the official AppImage contains everything you need, including all the Lua runtime libraries and KOReader's frontend code.
 
 The official build documentation notes this directly:

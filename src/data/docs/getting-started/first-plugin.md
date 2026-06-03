@@ -6,6 +6,7 @@ sidebar:
   label: First Plugin
   order: 4
 ---
+# First Plugin 
 
 Now that you're familiar with KOReader's plugin structure, let's put that knowledge into practice by building one. The goal here isn't to create anything fancy, just the smallest possible plugin that KOReader can recognize and load.
 

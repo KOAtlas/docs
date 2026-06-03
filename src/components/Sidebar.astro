@@ -1,52 +1,127 @@
 ---
 import { getCollection } from "astro:content";
 
+
+
+interface Props {
+  currentPath?: string;
+}
+
 const { currentPath = "/" } = Astro.props;
 const docs = await getCollection("docs");
 
-const groups: Record<string, (typeof docs)[number][]> = {};
+type Doc = (typeof docs)[number];
+const groups: Record<string, Doc[]> = {};
 
 for (const doc of docs) {
   const group = doc.data.group;
-
-  if (!groups[group]) {
-    groups[group] = [];
-  }
-
+  if (!groups[group]) groups[group] = [];
   groups[group].push(doc);
 }
 
 for (const group in groups) {
   groups[group].sort((a, b) => a.data.sidebar.order - b.data.sidebar.order);
 }
+
+const GROUP_ORDER = ["About", "Getting Started"];
+
+const groupEntries = Object.entries(groups).sort(([a], [b]) => {
+  const ai = GROUP_ORDER.findIndex(g => g.toLowerCase() === a.toLowerCase());
+  const bi = GROUP_ORDER.findIndex(g => g.toLowerCase() === b.toLowerCase());
+  if (ai === -1 && bi === -1) return a.localeCompare(b);
+  if (ai === -1) return 1;
+  if (bi === -1) return -1;
+  return ai - bi;
+}) as [string, Doc[]][];
 ---
 
-<aside class="hidden lg:block w-56 shrink-0 sticky top-12 self-start h-[calc(100vh-3rem)] overflow-y-auto py-8 pr-6 border-r border-cream-200">
-  {Object.entries(groups).map(([group, pages]) => (
-    <div class="mb-8">
-      <p class="text-[10px] font-mono font-semibold text-ko-muted uppercase tracking-widest mb-2 px-3">
-        {group}
-      </p>
-      <nav class="flex flex-col gap-0.5 text-sm">
-        {pages.map((page) => {
-          const href = `/docs/${page.id}`;
-          const active = href === currentPath;
-          return (
-            <a
-              href={href}
-              class={
-                `px-3 py-1.5 rounded-r text-sm transition-all duration-150 ease-in-out ${
+
+<aside
+  class="hidden lg:block w-56 shrink-0 sticky top-12 self-start h-[calc(100vh-3rem)] overflow-y-auto py-8 pr-6 border-r border-cream-200"
+>
+  {
+    groupEntries.map(([group, pages]) => (
+      <div class="mb-8">
+        <p class="text-[10px] font-mono font-semibold text-ko-dark uppercase tracking-widest mb-2 px-3 py-2 bg-cream-100 border-b border-cream-300 -mx-3 px-3">
+          {group}
+        </p>
+        <nav class="flex flex-col gap-0.5">
+          {pages.map((page) => {
+            const href = `/docs/${page.id}`;
+            const active = href === currentPath;
+            return (
+              <a
+                href={href}
+                class={`px-3 py-1.5 rounded-r text-sm transition-all duration-150 ${
                   active
                     ? "bg-cream-100 text-ko-brown font-medium border-l-2 border-ko-amber pl-[calc(0.75rem-2px)]"
                     : "text-ko-muted hover:text-ko-brown hover:bg-cream-100"
-                }`
-              }
-            >
-              {page.data.sidebar.label}
-            </a>
-          );
-        })}
-      </nav>
-    </div>
-  ))}
+                }`}
+              >
+                {page.data.sidebar.label}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    ))
+  }
 </aside>
+
+<!-- mobile menu -->
+<div
+  id="sidebar-overlay"
+  class="fixed inset-0 z-30 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+  style="background:rgba(28,16,8,0.35);backdrop-filter:blur(2px);"
+>
+</div>
+
+<!-- sliding drawer -->
+<div
+  id="mobile-sidebar"
+  class="-translate-x-full fixed top-0 left-0 z-40 h-full w-72 overflow-y-auto border-r-2 border-cream-200 shadow-xl transition-transform duration-300 ease-in-out lg:hidden"
+  style="background-color:#faf8f3;"
+>
+  <div
+    class="sticky top-0 z-10 h-12 flex items-center gap-2.5 px-4 border-b border-cream-200"
+    style="background-color:#faf8f3;"
+  >
+    <div
+      class="w-6 h-6 bg-ko-amber rounded flex items-center justify-center text-xxs font-bold text-cream-50 shrink-0"
+    >
+      K
+    </div>
+    <span class="font-mono text-sm font-semibold text-ko-brown">KOAtlas</span>
+  </div>
+
+  <!-- Drawer nav -->
+  <div class="py-6 px-3">
+    {
+      groupEntries.map(([group, pages]) => (
+        <div class="mb-8">
+          <p class="text-[10px] font-mono font-semibold text-ko-dark uppercase tracking-widest mb-2 px-3 py-2 bg-cream-100 border-b border-cream-300 -mx-3 px-3">
+            {group}
+          </p>
+          <nav class="flex flex-col gap-0.5">
+            {pages.map((page) => {
+              const href = `/docs/${page.id}`;
+              const active = href === currentPath;
+              return (
+                <a
+                  href={href}
+                  class={`px-3 py-2 rounded-r text-sm transition-all duration-150 ${
+                    active
+                      ? "bg-cream-100 text-ko-brown font-medium border-l-2 border-ko-amber pl-[calc(0.75rem-2px)]"
+                      : "text-ko-muted hover:text-ko-brown hover:bg-cream-100"
+                  }`}
+                >
+                  {page.data.sidebar.label}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      ))
+    }
+  </div>
+</div>

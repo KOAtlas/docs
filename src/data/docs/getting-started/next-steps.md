@@ -6,6 +6,7 @@ sidebar:
   label: Next Steps
   order: 2
 ---
+# Next Steps 
 
 At this point you should have a text editor, a basic handle on Lua, and a working KOReader installation extracted from the AppImage. That is enough to start writing and testing your first plugin.
 

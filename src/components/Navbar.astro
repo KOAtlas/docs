@@ -1,15 +1,20 @@
 ---
 const { currentPath = "/" } = Astro.props;
 const navItems = [
-  { label: "Start", href: "/" },
-  { label: "Setup", href: "/docs/getting-started/installation" },
+  { label: "Start",        href: "/" },
+  { label: "Setup",        href: "/docs/getting-started/installation" },
   { label: "Fundamentals", href: "/docs/fundamentals/lifecycle" },
-  { label: "API", href: "/docs/api" },
-];
+  { label: "API",          href: "/docs/api" },
+] satisfies { label: string; href: string }[];
 ---
 
-<header class="sticky top-0 z-20 bg-cream-50 border-b-2 border-cream-200 shadow-md" style="background-color: #faf8f3; opacity: 1;">
+<header
+  class="sticky top-0 z-50 border-b-2 border-cream-200 shadow-md"
+  style="background-color:#faf8f3;"
+>
   <div class="max-w-[1200px] mx-auto px-4 h-12 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-2.5 shrink-0">
       <div class="w-6 h-6 bg-ko-amber rounded flex items-center justify-center text-xxs font-bold text-cream-50">
         K
@@ -17,17 +22,74 @@ const navItems = [
       <span class="font-mono text-sm font-semibold text-ko-brown">KOAtlas</span>
     </a>
 
-    <nav class="flex items-center gap-0.5 text-xs font-mono">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class={
-            `${item.href === currentPath ? "bg-cream-100 text-ko-amber font-medium" : "text-ko-muted hover:text-ko-brown hover:bg-cream-100"} px-2.5 py-1 rounded transition-colors`
-          }
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
+    <!-- Right side: nav links + hamburger -->
+    <div class="flex items-center gap-2">
+      <nav class="flex items-center gap-0.5 text-xs font-mono">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`px-2.5 py-1 rounded transition-colors ${
+              item.href === currentPath
+                ? "bg-cream-100 text-ko-amber font-medium"
+                : "text-ko-muted hover:text-ko-brown hover:bg-cream-100"
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Hamburger — visible below md, sits at far right -->
+      <button
+        id="sidebar-toggle"
+        class="min-[1200px]:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded hover:bg-cream-100 transition-colors shrink-0"
+        aria-expanded="false"
+      >
+        <span class="ham-line" style="display:block;width:18px;height:2px;background:#3d2b1f;border-radius:2px;transition:transform 0.3s,opacity 0.3s;transform-origin:center;"></span>
+        <span class="ham-line" style="display:block;width:18px;height:2px;background:#3d2b1f;border-radius:2px;transition:transform 0.3s,opacity 0.3s;"></span>
+        <span class="ham-line" style="display:block;width:18px;height:2px;background:#3d2b1f;border-radius:2px;transition:transform 0.3s,opacity 0.3s;transform-origin:center;"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  const btn     = document.getElementById("sidebar-toggle") as HTMLButtonElement | null;
+  const sidebar = document.getElementById("mobile-sidebar") as HTMLElement | null;
+  const overlay = document.getElementById("sidebar-overlay") as HTMLElement | null;
+  const lines   = btn?.querySelectorAll<HTMLElement>(".ham-line");
+
+  function open(): void {
+    sidebar?.classList.remove("-translate-x-full");
+    sidebar?.classList.add("translate-x-0");
+    overlay?.classList.remove("opacity-0", "pointer-events-none");
+    overlay?.classList.add("opacity-100");
+    btn?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    if (lines) {
+      (lines[0] as HTMLElement).style.transform = "translateY(7px) rotate(45deg)";
+      (lines[1] as HTMLElement).style.opacity   = "0";
+      (lines[2] as HTMLElement).style.transform = "translateY(-7px) rotate(-45deg)";
+    }
+  }
+
+  function close(): void {
+    sidebar?.classList.add("-translate-x-full");
+    sidebar?.classList.remove("translate-x-0");
+    overlay?.classList.add("opacity-0", "pointer-events-none");
+    overlay?.classList.remove("opacity-100");
+    btn?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (lines) {
+      (lines[0] as HTMLElement).style.transform = "";
+      (lines[1] as HTMLElement).style.opacity   = "";
+      (lines[2] as HTMLElement).style.transform = "";
+    }
+  }
+
+  btn?.addEventListener("click", () =>
+    btn.getAttribute("aria-expanded") === "true" ? close() : open()
+  );
+  overlay?.addEventListener("click", close);
+  sidebar?.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+</script>

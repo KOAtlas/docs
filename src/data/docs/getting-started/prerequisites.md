@@ -6,6 +6,7 @@ sidebar:
   label: Prerequisites
   order: 0
 ---
+# Prerequisites
 
 KOReader plugins are written entirely in Lua, which keeps the barrier to entry low. You do not need a compiled language, a complex build system, or a specialized IDE. If you have a text editor and a basic grasp of Lua, you have everything required to start.
 

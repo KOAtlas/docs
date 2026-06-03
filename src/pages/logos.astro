@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>KOAtlas Logo Exploration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #faf8f3;
+        --brown: #3d2b1f;
+        --text: #1c1008;
+        --compass: #fff7e8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 80px 24px;
+        background: var(--bg);
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .hero {
+        max-width: 700px;
+        margin: 0 auto 80px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 18px;
+        font-size: 36px;
+        letter-spacing: -0.05em;
+        color: var(--text);
+      }
+
+      .hero p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.9;
+        color: #6f6254;
+      }
+
+      .links {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .links a {
+        text-decoration: none;
+        color: var(--brown);
+        background: white;
+        border: 1px solid #e7decd;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        transition: 0.15s ease;
+      }
+
+      .links a:hover {
+        background: var(--brown);
+        color: white;
+      }
+
+      .wrap {
+        max-width: 1000px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+      }
+
+      .divider {
+        width: 240px;
+        height: 1px;
+        background: #e7decd;
+      }
+
+      .label {
+        margin-top: 16px;
+        font-size: 12px;
+        color: #9a8d7b;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 48px;
+      }
+
+      .logo-box {
+        position: relative;
+        background: var(--brown);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .logo-xl {
+        width: 110px;
+        height: 110px;
+        border-radius: 18px;
+      }
+
+      .logo-nav {
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+      }
+
+      .k-xl {
+        position: relative;
+        z-index: 2;
+        font-size: 68px;
+        font-weight: 700;
+        color: white;
+        line-height: 1;
+      }
+
+      .k-nav {
+        position: relative;
+        z-index: 2;
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        line-height: 1;
+      }
+
+      .compass-xl {
+        position: absolute;
+        width: 98px;
+        height: 98px;
+        opacity: 0.44;
+        transform: translate(-2px, 2px) rotate(45deg);
+      }
+
+      .compass-nav {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        opacity: 0.42;
+        transform: translate(-1px, 1px) rotate(45deg);
+      }
+
+      .wordmark-xl {
+        font-size: 56px;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.05em;
+      }
+
+      .wordmark-nav {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.03em;
+      }
+
+      .alt-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .alt-logo {
+        width: 110px;
+        height: 110px;
+        background: white;
+        border: 1px solid #e7decd;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--brown);
+        font-size: 42px;
+        font-weight: 700;
+      }
+
+      .favicon-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <h1>KOAtlas Logo System</h1>
+
+      <p>
+        A navigational atlas for KOReader plugin development. Every KOAtlas logo
+        is built directly in HTML and SVG, making the entire identity system
+        version-controlled, reproducible, and editable with code.
+      </p>
+
+      <div class="links">
+        <a href="https://github.com/KOAtlas/?view_as=public" target="_blank">
+          KOAtlas
+        </a>
+
+        <a href="https://github.com/chaulagainrupak" target="_blank">
+          Creator
+        </a>
+
+        <a href="https://ko-fi.com/R5R21CWC4P" target="_blank">
+          Support the Creator
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="col">
+        <div class="logo-box logo-xl">
+          <svg class="compass-xl" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="36" stroke="#fff7e8" stroke-width="0.9"
+            ></circle>
+            <circle cx="40" cy="40" r="25" stroke="#fff7e8" stroke-width="0.7"
+            ></circle>
+
+            <line
+              x1="40"
+              y1="3"
+              x2="40"
+              y2="12"
+              stroke="#fff7e8"
+              stroke-width="1.6"></line>
+            <line
+              x1="40"
+              y1="68"
+              x2="40"
+              y2="77"
+              stroke="#fff7e8"
+              stroke-width="1.2"></line>
+
+            <line
+              x1="3"
+              y1="40"
+              x2="12"
+              y2="40"
+              stroke="#fff7e8"
+              stroke-width="1"></line>
+            <line
+              x1="68"
+              y1="40"
+              x2="77"
+              y2="40"
+              stroke="#fff7e8"
+              stroke-width="1"></line>
+
+            <line
+              x1="15"
+              y1="15"
+              x2="20"
+              y2="20"
+              stroke="#fff7e8"
+              stroke-width="0.8"></line>
+            <line
+              x1="60"
+              y1="15"
+              x2="65"
+              y2="20"
+              stroke="#fff7e8"
+              stroke-width="0.8"></line>
+            <line
+              x1="60"
+              y1="60"
+              x2="65"
+              y2="65"
+              stroke="#fff7e8"
+              stroke-width="0.8"></line>
+            <line
+              x1="15"
+              y1="60"
+              x2="20"
+              y2="65"
+              stroke="#fff7e8"
+              stroke-width="0.8"></line>
+
+            <polygon points="40,4 37,40 40,32 43,40" fill="#fff7e8"></polygon>
+
+            <polygon
+              points="40,76 37,40 40,48 43,40"
+              fill="#fff7e8"
+              opacity=".25"></polygon>
+
+            <polygon
+              points="76,40 40,37 48,40 40,43"
+              fill="#fff7e8"
+              opacity=".12"></polygon>
+
+            <polygon
+              points="4,40 40,37 32,40 40,43"
+              fill="#fff7e8"
+              opacity=".12"></polygon>
+
+            <circle cx="40" cy="40" r="2.8" fill="#fff7e8"></circle>
+          </svg>
+
+          <span class="k-xl">K</span>
+        </div>
+
+        <div class="label">Icon</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="col">
+        <div style="display:flex;align-items:center;gap:18px;">
+          <div class="logo-box logo-xl">
+            <svg class="compass-xl" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="36" stroke="#fff7e8" stroke-width="0.9"
+              ></circle>
+              <circle cx="40" cy="40" r="25" stroke="#fff7e8" stroke-width="0.7"
+              ></circle>
+
+              <line
+                x1="40"
+                y1="3"
+                x2="40"
+                y2="12"
+                stroke="#fff7e8"
+                stroke-width="1.6"></line>
+              <line
+                x1="40"
+                y1="68"
+                x2="40"
+                y2="77"
+                stroke="#fff7e8"
+                stroke-width="1.2"></line>
+
+              <polygon points="40,4 37,40 40,32 43,40" fill="#fff7e8"></polygon>
+              <polygon
+                points="40,76 37,40 40,48 43,40"
+                fill="#fff7e8"
+                opacity=".25"></polygon>
+
+              <circle cx="40" cy="40" r="2.8" fill="#fff7e8"></circle>
+            </svg>
+
+            <span class="k-xl">K</span>
+          </div>
+
+          <div class="wordmark-xl">KOAtlas</div>
+        </div>
+
+        <div class="label">Wordmark</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="col">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="logo-box logo-nav">
+            <svg class="compass-nav" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="36" stroke="#fff7e8" stroke-width="2"
+              ></circle>
+              <polygon points="40,4 37,40 40,32 43,40" fill="#fff7e8"></polygon>
+              <polygon
+                points="40,76 37,40 40,48 43,40"
+                fill="#fff7e8"
+                opacity=".25"></polygon>
+              <circle cx="40" cy="40" r="3" fill="#fff7e8"></circle>
+            </svg>
+
+            <span class="k-nav">K</span>
+          </div>
+
+          <span class="wordmark-nav"> KOAtlas </span>
+        </div>
+
+        <div class="label">Navbar</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="col">
+        <div class="favicon-row">
+          <div
+            class="logo-box"
+            style="width:64px;height:64px;border-radius:14px;"
+          >
+            <span style="font-size:34px;color:white;font-weight:700;">K</span>
+          </div>
+
+          <div
+            class="logo-box"
+            style="width:48px;height:48px;border-radius:12px;"
+          >
+            <span style="font-size:26px;color:white;font-weight:700;">K</span>
+          </div>
+
+          <div
+            class="logo-box"
+            style="width:32px;height:32px;border-radius:8px;"
+          >
+            <span style="font-size:18px;color:white;font-weight:700;">K</span>
+          </div>
+
+          <div
+            class="logo-box"
+            style="width:16px;height:16px;border-radius:4px;"
+          >
+            <span style="font-size:9px;color:white;font-weight:700;">K</span>
+          </div>
+        </div>
+
+        <div class="label">Favicon Sizes</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -6,6 +6,7 @@ sidebar:
   label: Plugin Structure
   order: 3
 ---
+# Plugin Structure 
 
 Before writing a plugin, it is important to understand how KOReader discovers and loads plugins.
 

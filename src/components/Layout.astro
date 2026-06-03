@@ -4,13 +4,18 @@ import Navbar from "./Navbar.astro";
 import Sidebar from "./Sidebar.astro";
 import Footer from "./Footer.astro";
 
-const { title = "KOAtlas", description = "KOReader Plugin Development Reference", currentPath = "/" } = Astro.props;
+const {
+  title = "KOAtlas",
+  description = "KOReader Plugin Development Reference",
+  currentPath = "/",
+} = Astro.props;
+const { headings = [] } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -27,17 +32,43 @@ const { title = "KOAtlas", description = "KOReader Plugin Development Reference"
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
     />
   </head>
+
   <body class="font-sans text-ko-brown antialiased bg-cream-50">
     <Navbar currentPath={currentPath} />
 
-    <div class="max-w-[1200px] mx-auto px-4 flex gap-0">
+    <div class="max-w-[1200px] mx-auto px-4 flex">
       <Sidebar currentPath={currentPath} />
 
-      <main class="flex-1 min-w-0 py-10 lg:px-12 max-w-[740px]">
+      <main
+        class="w-full max-w-[740px] mx-auto min-[1200px]:mx-0 min-[1200px]:flex-1 min-w-0 py-10 lg:px-12"
+      >
         <slot />
       </main>
 
-      <aside class="hidden xl:block w-48 shrink-0"></aside>
+      <aside class="hidden min-[1200px]:block w-52 shrink-0">
+        <div class="sticky top-20">
+          <p
+            class="mb-3 text-[11px] font-mono uppercase tracking-wider text-ko-muted"
+          >
+            On This Page
+          </p>
+
+          <nav class="flex flex-col gap-1">
+            {
+              headings.map((heading: { slug: any; depth: number; text: unknown; }) => (
+                <a
+                  href={`#${heading.slug}`}
+                  class={`text-xs leading-relaxed text-ko-muted hover:text-ko-amber ${
+                    heading.depth === 3 ? "pl-3" : ""
+                  }`}
+                >
+                  {heading.text}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </aside>
     </div>
 
     <Footer />
