@@ -1,0 +1,33 @@
+---
+const { currentPath = "/" } = Astro.props;
+const navItems = [
+  { label: "Start", href: "/" },
+  { label: "Setup", href: "/docs/getting-started/installation" },
+  { label: "Fundamentals", href: "/docs/fundamentals/lifecycle" },
+  { label: "API", href: "/docs/api" },
+];
+---
+
+<header class="sticky top-0 z-20 bg-cream-50 border-b-2 border-cream-200 shadow-md" style="background-color: #faf8f3; opacity: 1;">
+  <div class="max-w-[1200px] mx-auto px-4 h-12 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2.5 shrink-0">
+      <div class="w-6 h-6 bg-ko-amber rounded flex items-center justify-center text-xxs font-bold text-cream-50">
+        K
+      </div>
+      <span class="font-mono text-sm font-semibold text-ko-brown">KOAtlas</span>
+    </a>
+
+    <nav class="flex items-center gap-0.5 text-xs font-mono">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={
+            `${item.href === currentPath ? "bg-cream-100 text-ko-amber font-medium" : "text-ko-muted hover:text-ko-brown hover:bg-cream-100"} px-2.5 py-1 rounded transition-colors`
+          }
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

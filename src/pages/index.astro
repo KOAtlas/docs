@@ -1,17 +1,62 @@
 ---
+import Layout from "../components/Layout.astro";
 
+const title = "KOAtlas — KOReader Plugin Development Reference";
+const description = "Community-maintained reference for KOReader plugin development. APIs, architecture, patterns, and examples.";
+const currentPath = "/";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={title} description={description} currentPath={currentPath}>
+  <div class="py-10">
+    <div class="max-w-3xl">
+      <p class="text-sm font-mono uppercase tracking-widest text-ko-muted mb-4">KOReader plugin development</p>
+      <h1 class="font-mono text-4xl font-semibold text-ko-dark tracking-tight mb-4">KOAtlas</h1>
+      <p class="text-[15px] text-ko-brown leading-relaxed mb-6">
+        Community-maintained reference for KOReader plugin development — APIs, architecture, patterns, and practical examples drawn from the codebase and existing plugins.
+      </p>
+
+      <div class="border border-cream-300 bg-cream-100 rounded-md px-4 py-4 mb-10">
+        <p class="text-sm text-ko-muted flex items-start gap-3">
+          <span class="text-ko-amber font-mono"><i class="ph ph-warning"></i></span>
+          <span>
+            <strong class="text-ko-warm font-medium">Disclaimer:</strong> This project is unofficial and not affiliated with KOReader. Internal APIs may change. When this guide conflicts with the source code, the source code wins.
+          </span>
+        </p>
+      </div>
+
+      <!-- <section class="mb-10">
+        <h2 class="font-mono text-lg font-semibold text-ko-dark mb-4 border-b border-cream-200 pb-2">Start here</h2>
+        <ol class="space-y-3">
+          {[
+            { n: "1", label: "Development Environment Setup", href: "/docs/getting-started/installation" },
+            { n: "2", label: "Plugin Structure", href: "/docs/getting-started/plugin-structure" },
+            { n: "3", label: "First Plugin", href: "/docs/getting-started/first-plugin" },
+          ].map((item) => (
+            <li class="flex items-center gap-3">
+              <span class="font-mono text-xs text-ko-amber bg-cream-100 border border-cream-300 rounded w-6 h-6 flex items-center justify-center font-semibold">{item.n}</span>
+              <a href={item.href} class="text-[15px] text-ko-amber underline underline-offset-2 decoration-ko-amber/40 hover:decoration-ko-amber transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section> -->
+
+      <section>
+        <h2 class="font-mono text-lg font-semibold text-ko-dark mb-4 border-b border-cream-200 pb-2">What's in this guide</h2>
+        <div class="grid gap-3">
+          {[
+            { title: "Getting Started", desc: "Everything required to write and run your first plugin." },
+            { title: "Fundamentals", desc: "Plugin lifecycle, events, widgets, dispatcher, and settings." },
+            { title: "API Reference", desc: "UIManager, Event, Dispatcher, WidgetContainer, InputContainer, dialog widgets." },
+          ].map((item) => (
+            <div class="border border-cream-200 rounded-md bg-cream-50 p-4">
+              <p class="font-mono font-semibold text-ko-brown mb-1">{item.title}</p>
+              <p class="text-sm text-ko-muted">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

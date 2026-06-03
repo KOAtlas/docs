@@ -1,43 +1,44 @@
-# Astro Starter Kit: Minimal
+# KOAtlas
 
-```sh
-npm create astro@latest -- --template minimal
+Community-maintained reference for KOReader plugin development. APIs, architecture, patterns, and practical examples drawn from the codebase and existing plugins.
+
+> **Disclaimer:** This project is unofficial and not affiliated with KOReader. Internal APIs may change. When this guide conflicts with the source code, the source code wins.
+
+## What's in this guide
+
+- **Getting Started** — everything required to write and run your first plugin
+- **Fundamentals** — plugin lifecycle, events, widgets, dispatcher, and settings
+- **API Reference** — UIManager, Event, Dispatcher, WidgetContainer, InputContainer, dialog widgets
+- **Tutorials** — adding menu items, showing dialogs, handling events, saving settings, building custom widgets
+- **References** — source code pointers, development notes, and external resources
+
+## Running locally
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Built with
 
-## 🚀 Project Structure
+- [Astro](https://astro.build)
+- [Tailwind CSS](https://tailwindcss.com)
+- Deployed on [Cloudflare Pages](https://pages.cloudflare.com)
 
-Inside of your Astro project, you'll see the following folders and files:
+## Links
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- [koreader.rocks](https://koreader.rocks) — official KOReader website
+- [github.com/koreader/koreader](https://github.com/koreader/koreader) — KOReader source code
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Credits
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Created and maintained by [Rupak Chaulagain](https://chaulagainrupak.com.np)
 
-Any static assets, like images, can be placed in the `public/` directory.
+If this helped you build a plugin, consider [supporting on Ko-fi](https://ko-fi.com/richtrash).
 
-## 🧞 Commands
+Corrections, improvements, and new tutorials are always welcome.
 
-All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## License
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[MIT](./LICENSE)

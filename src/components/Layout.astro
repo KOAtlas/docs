@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+import Navbar from "./Navbar.astro";
+import Sidebar from "./Sidebar.astro";
+import Footer from "./Footer.astro";
+
+const { title = "KOAtlas", description = "KOReader Plugin Development Reference", currentPath = "/" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
+    />
+  </head>
+  <body class="font-sans text-ko-brown antialiased bg-cream-50">
+    <Navbar currentPath={currentPath} />
+
+    <div class="max-w-[1200px] mx-auto px-4 flex gap-0">
+      <Sidebar currentPath={currentPath} />
+
+      <main class="flex-1 min-w-0 py-10 lg:px-12 max-w-[740px]">
+        <slot />
+      </main>
+
+      <aside class="hidden xl:block w-48 shrink-0"></aside>
+    </div>
+
+    <Footer />
+  </body>
+</html>
